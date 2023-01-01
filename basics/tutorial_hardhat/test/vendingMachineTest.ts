@@ -42,7 +42,7 @@ describe("Lock", function () {
       const { vendingMachine, owner, otherAccount } = await loadFixture(deployOneYearLockFixture);
       const amount : number = 10;
       await vendingMachine.connect(owner).refill(amount);
-      expect(await (await vendingMachine.cupcakeBalances(vendingMachine.address)).toNumber()).to.equal(110);
+      expect((await vendingMachine.cupcakeBalances(vendingMachine.address)).toNumber()).to.equal(110);
     });
   });
 });
