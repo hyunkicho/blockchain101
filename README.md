@@ -1,3 +1,16 @@
+# mermaid
+
+```
+sequenceDiagram
+    actor user
+    actor admin
+    participant vending machine contract as contract
+    user ->>+ contract : buy
+    contract -->>- user : tx hash
+    admin ->>+ contract : refill
+    contract -->>- user : tx hash
+```
+
 # Truffle 기본예제
 
 1. truffle 설치
@@ -55,4 +68,13 @@ truffle migrate
 ```
 truffle migrate --f 2 --to 2
 ```
+
+7. test 실행
+```
+truffle test ./test/vendingMachine.js
+```
+
+8. 스크립트 작성
+https://trufflesuite.com/docs/truffle/how-to/write-external-scripts/
+파일 형태로 스크립트를 만들어서 사용 가능
 
