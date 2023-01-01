@@ -45,18 +45,4 @@ describe("Lock", function () {
       expect(await (await vendingMachine.cupcakeBalances(vendingMachine.address)).toNumber()).to.equal(110);
     });
   });
-
-  // describe("Events", function () {
-  //   it("Should emit an event on withdrawals", async function () {
-  //     const { lock, unlockTime, lockedAmount } = await loadFixture(
-  //       deployOneYearLockFixture
-  //     );
-
-  //     await time.increaseTo(unlockTime);
-
-  //     await expect(lock.withdraw())
-  //       .to.emit(lock, "Withdrawal")
-  //       .withArgs(lockedAmount, anyValue); // We accept any value as `when` arg
-  //   });
-  // });
 });
