@@ -12,7 +12,7 @@ sequenceDiagram
 ```
 <img width="718" alt="image" src="https://user-images.githubusercontent.com/35443121/210163061-3f0849b5-f6ef-4271-9128-a60f0a3e5add.png">
 
-# Truffle 기본예제
+# Truffle & web3 javascript 기본예제
 
 1. truffle 설치
 
@@ -121,3 +121,40 @@ node scripts/cupcakeBalances.js
 ```
 node scripts/purchase.js
 ```
+
+
+# Hardhat & ethers typescript 기본예제
+
+1. 설치
+```
+npm install --save-dev hardhat
+```
+
+2. hardhat 실행 후 typesctipt 선택
+
+```
+npx hardhat
+888    888                      888 888               888
+888    888                      888 888               888
+888    888                      888 888               888
+8888888888  8888b.  888d888 .d88888 88888b.   8888b.  888888
+888    888     "88b 888P"  d88" 888 888 "88b     "88b 888
+888    888 .d888888 888    888  888 888  888 .d888888 888
+888    888 888  888 888    Y88b 888 888  888 888  888 Y88b.
+888    888 "Y888888 888     "Y88888 888  888 "Y888888  "Y888
+
+👷 Welcome to Hardhat v2.9.9 👷‍
+
+? What do you want to do? …
+  Create a JavaScript project
+  Create a TypeScript project
+❯ Create an empty hardhat.config.js
+  Quit
+```
+
+3. 배포하기
+```
+npx hardhat run scripts/deploy.ts
+```
+
+4. 
