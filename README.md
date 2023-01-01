@@ -10,6 +10,7 @@ sequenceDiagram
     admin ->>+ contract : refill
     contract -->>- user : tx hash
 ```
+<img width="718" alt="image" src="https://user-images.githubusercontent.com/35443121/210163061-3f0849b5-f6ef-4271-9128-a60f0a3e5add.png">
 
 # Truffle 기본예제
 
