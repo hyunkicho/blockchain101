@@ -188,4 +188,86 @@ config 파일 로컬 네트워크에 연결시키게 변경
 npx hardhat run scripts/deploy.ts --network local
 npx hardhat run scripts/purchase.ts --network local
 npx hardhat run scripts/cupcakeBalance.ts --network local
+npx hardhat run scripts/purchaseEvent.ts --network local
 ```
+
+7. 테스트 코드 커버리지 모듈 설치
+```
+npm install --save-dev solidity-coverage
+```
+
+8. 테스트 코드 커버리지 실행 시
+```
+hyunkicho@192 tutorial_hardhat % npx hardhat coverage
+
+Version
+=======
+> solidity-coverage: v0.8.2
+
+Instrumenting for coverage...
+=============================
+
+> VendigMachine.sol
+
+Compilation:
+============
+
+Generating typings for: 1 artifacts in dir: typechain-types for target: ethers-v5
+Successfully generated 6 typings!
+Compiled 1 Solidity file successfully
+
+Network Info
+============
+> HardhatEVM: v2.12.4
+> network:    hardhat
+
+
+
+  Lock
+    VendingMachine
+      ✔ should make 100 cupcake at constructor (151ms)
+      ✔ should send cupcakes correctly after purchase
+      ✔ should refill cupcakes correctly
+
+
+  3 passing (192ms)
+
+--------------------|----------|----------|----------|----------|----------------|
+File                |  % Stmts | % Branch |  % Funcs |  % Lines |Uncovered Lines |
+--------------------|----------|----------|----------|----------|----------------|
+ contracts/         |      100 |       50 |      100 |      100 |                |
+  VendigMachine.sol |      100 |       50 |      100 |      100 |                |
+--------------------|----------|----------|----------|----------|----------------|
+All files           |      100 |       50 |      100 |      100 |                |
+--------------------|----------|----------|----------|----------|----------------|
+
+> Istanbul reports written to ./coverage/ and ./coverage.json
+```
+
+9. 가스비 측정 모듈 추가
+```
+npm i hardhat-gas-reporter --save 
+```
+
+다시한번 테스트 시 예산 가스비가 모두 나오게 된다.
+
+10. sol2 uml 사용
+
+설치
+```
+npm link sol2uml --only=production
+```
+
+버전 체크
+```
+hyunkicho@192 tutorial_hardhat % npm ls sol2uml -g
+
+/usr/local/lib
+└── sol2uml@1.1.29
+```
+
+uml 그리기
+```
+sol2uml ./contracts/VendigMachine.sol
+```
+
