@@ -108,7 +108,16 @@ truffle migrate --f 1 --to 1
 truffle test ./test/vendingMachine.js
 ```
 
-8. 스크립트 작성
-https://trufflesuite.com/docs/truffle/how-to/write-external-scripts/
-파일 형태로 스크립트를 만들어서 사용 가능
+8. 조회/ 트랜잭션 스크립트 실행해 보기
 
+각 파일의 input 값 수정해 준 후 스크립트 실행
+
+조회의 경우
+```
+node scripts/cupcakeBalances.js 
+```
+
+트랜잭션 전송의 경우
+```
+node scripts/purchase.js
+```
