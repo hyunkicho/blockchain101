@@ -122,6 +122,11 @@ node scripts/cupcakeBalances.js
 node scripts/purchase.js
 ```
 
+9. 이벤트 로그 조회해보기
+
+```
+node scripts/purchaseEvent.js 
+```
 
 # Hardhat & ethers typescript 기본예제
 
@@ -157,4 +162,9 @@ npx hardhat
 npx hardhat run scripts/deploy.ts
 ```
 
-4. 
+4. 테스트하기
+```
+npx hardhat test
+```
+
+5. 
