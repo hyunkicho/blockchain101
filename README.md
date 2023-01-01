@@ -60,14 +60,47 @@ Commands:
 2_deploy_vendingMachine.js 파일 참고
 
 5. 배포 진행
+
+컴파일만 하는 경우
 ```
 truffle compile
+```
+
+임의의 로컬 네트워크를 생성하고 그 안에서 배포를 원할 시
+```
+truffle develop
+truffle(develop)> migrate
+```
+
+기본 설정으로 배포를 해보고 싶은 경우
+```
 truffle migrate
 ```
 
-6. 2번 파일만 배포하길 원할 시
+config 파일 수정해 보기
 ```
-truffle migrate --f 2 --to 2
+  networks: {
+    development: {
+      host: "127.0.0.1",     // Localhost (default: none)
+      port: 8545,            // Standard Ethereum port (default: none)
+      network_id: "*",       // Any network (default: none)
+     },
+    ganache: {
+      host: "127.0.0.1",
+      port: 7545,
+      network_id: "*"
+    }
+  },
+```
+
+ganache에 배포하길 원할 시 다음과 같이 실행
+```
+truffle migrate --network ganache
+```
+
+6. 1번 파일만 배포하길 원할 시
+```
+truffle migrate --f 1 --to 1
 ```
 
 7. test 실행
