@@ -167,4 +167,25 @@ npx hardhat run scripts/deploy.ts
 npx hardhat test
 ```
 
-5. 
+5. hardhat 로컬 네트워크 실행하기
+```
+npx hardhat node
+```
+config 파일 로컬 네트워크에 연결시키게 변경
+```
+  networks: {
+    hardhat: {},
+    local: {
+      url:'http://127.0.0.1:8545/',
+      accounts: ['0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80']
+    },
+  },
+```
+
+
+6. 배포하고 상호작용하기
+```
+npx hardhat run scripts/deploy.ts --network local
+npx hardhat run scripts/purchase.ts --network local
+npx hardhat run scripts/cupcakeBalance.ts --network local
+```
