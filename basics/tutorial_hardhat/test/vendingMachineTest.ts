@@ -26,13 +26,16 @@ describe("Lock", function () {
 
     it("should send cupcakes correctly after purchase", async function () {
       const { vendingMachine, owner, otherAccount } = await loadFixture(deployOneYearLockFixture);
+      console.log("vendingMachine cupcakeBalances",await vendingMachine.cupcakeBalances(vendingMachine.address))
       const accountTwoStartingBalance = (await vendingMachine.cupcakeBalances(otherAccount.address)).toNumber();
+      console.log("accountTwoStartingBalance >>", accountTwoStartingBalance)
       const amount = 10;
       await expect(vendingMachine.connect(otherAccount).purchase(amount, { value: (amount*10**18).toString() }))
       .to.emit(vendingMachine, "Purchase")
       .withArgs(otherAccount.address,amount)
-      
       const accountTwoEndingBalance = ((await vendingMachine.cupcakeBalances(otherAccount.address)).toNumber());
+      console.log("accountTwoEndingBalance >>", accountTwoEndingBalance)
+      console.log("vendingMachine cupcakeBalances",await vendingMachine.cupcakeBalances(vendingMachine.address))
       expect(accountTwoEndingBalance).to.equal(
         accountTwoStartingBalance+amount
       );
@@ -40,8 +43,10 @@ describe("Lock", function () {
 
     it("should refill cupcakes correctly", async function () {
       const { vendingMachine, owner, otherAccount } = await loadFixture(deployOneYearLockFixture);
+      console.log("vendingMachine cupcakeBalances",await vendingMachine.cupcakeBalances(vendingMachine.address))
       const amount : number = 10;
       await vendingMachine.connect(owner).refill(amount);
+      console.log("vendingMachine cupcakeBalances",await vendingMachine.cupcakeBalances(vendingMachine.address))
       expect((await vendingMachine.cupcakeBalances(vendingMachine.address)).toNumber()).to.equal(110);
     });
   });
