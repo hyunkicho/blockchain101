@@ -6,6 +6,7 @@
     "solidity-coverage": "^0.8.2"
   },
   "dependencies": {
+    "ethers": "^5.7.2",
     "sol2uml": "^2.4.2"
   }
 }
