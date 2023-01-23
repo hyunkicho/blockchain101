@@ -12,4 +12,11 @@ hardhat & ethers
 환경에서 트랜잭션 조회, 처리, 테스트, 이벤트 조회를 모두 진행하고
 각종 편리한 모듈들을 학습해 봅니다.
 
-2. coming soon!
+2. erc20
+openzeppelin의 erc20 컨트렉트를 기준으로
+truffle & javascript 
+hardhat & ethers 
+환경에서 트랜잭션 조회, 처리, 테스트, 이벤트 조회를 모두 진행하고
+다중 체인에 배포하여 봅니다.
+
+
