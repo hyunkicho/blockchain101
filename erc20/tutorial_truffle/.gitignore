@@ -9,6 +9,8 @@ typechain-types
 cache
 artifacts
 
+#Truffle files
+build
 
 node_modules
 .env
