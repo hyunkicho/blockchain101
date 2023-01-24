@@ -39,9 +39,23 @@
     truffle develop
     ```
 
-    창 하나 더 띄우고 test bigNumber 살행
     ```
-    node scripts/bigNumber.js    
+4. 단위 테스트 진행
+
+    run erc20 test (Erc20 단위 테스트 파일 실행)
+    ```
+    truffle(develop)> test ./test/ERC20.js
     ```
 
-4. 
+    install module for checking revert statement(revert 체크하는 모듈 설치)
+    ```
+    npm install --save-dev chai truffle-assertions
+    ```
+
+    run scenarioERC20 test (Erc20 시나리오 테스트 실행)
+    ```
+    truffle(develop)> test ./test/scenario1ERC20.js
+    ```
+    ```
+    truffle(develop)> test ./test/scenario2ERC20.js
+    ```
