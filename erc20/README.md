@@ -40,7 +40,7 @@
     ```
 
     ```
-4. 단위 테스트 진행
+4. 테스트 진행
 
     run erc20 test (Erc20 단위 테스트 파일 실행)
     ```
@@ -58,4 +58,22 @@
     ```
     ```
     truffle(develop)> test ./test/scenario2ERC20.js
+    ```
+5. 스크립트 실행
+    using dotEnv for privateKey and Rpc url
+    ```
+    npm i dotenv --save
+    ```
+
+    1. check balanceOf
+    ```
+    node scripts/balanceOfERC20.js
+    ```
+    2. send mint Tx
+    ```
+    node scripts/mintERC20.js
+    ```
+    3. send Transfer Tx
+    ```
+    node scripts/transferERC20.js 
     ```
