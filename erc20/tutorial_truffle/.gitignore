@@ -9,9 +9,6 @@ typechain-types
 cache
 artifacts
 
-#Truffle files
-build
-
 node_modules
 .env
 coverage
@@ -23,4 +20,7 @@ typechain-types
 cache
 artifacts
 .DS_Store
+#Truffle files
+build
+build/contracts
 
