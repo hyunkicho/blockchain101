@@ -15,12 +15,14 @@ coverage
 coverage.json
 typechain
 typechain-types
+#Truffle files
+build
+build/contracts
 
 # Hardhat files
 cache
 artifacts
 .DS_Store
-#Truffle files
-build
-build/contracts
+
+
 
