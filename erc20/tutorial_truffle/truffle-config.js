@@ -37,25 +37,23 @@ module.exports = {
    * $ truffle test --network <network-name>
    */
 
-
-
   networks: {
     development: {
-      host: "127.0.0.1",     // Localhost (default: none)
-      port: 9545,            // Standard Ethereum port (default: none)
-      network_id: "*",       // Any network (default: none)
-     },
-    ganache: {
-      host: "127.0.0.1",
-      port: 7545,
-      network_id: "*"
+        host: "127.0.0.1",     // Localhost (default: none)
+        port: 9545,            // Standard Ethereum port (default: none)
+        network_id: "*",       // Any network (default: none)
+      },
+      ganache: {
+        host: "127.0.0.1",
+        port: 7545,
+        network_id: "*"
+      },
+      goerli: {
+        provider: () =>
+          new HDWalletProvider(process.env.PRIVATE_KEY, process.env.RPC_URL),
+        network_id: '5',
+      },
     },
-    goerli: {
-      provider: () =>
-        new HDWalletProvider(process.env.PRIVATE_KEY, process.env.RPC_URL),
-      network_id: '5',
-    },
-
     // Set default mocha options here, use special reporters etc.
     mocha: {
       // timeout: 100000
@@ -65,7 +63,6 @@ module.exports = {
     compilers: {
       solc: {
         version: "0.8.13",      // Fetch exact version from solc-bin
-      }
+      },
     }
-  }
-}
+};
