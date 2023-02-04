@@ -34,14 +34,17 @@
 
 3. test bigNumber (bignumber 테스트 하기)
 
-    Start local network (로컬 네트워크 실행)
     ```
-    truffle develop
+    node scripts/bigNumber.js 
     ```
 
     ```
 4. 테스트 진행
 
+    Start local network (로컬 네트워크 실행)
+    ```
+    truffle develop
+    ```
     run erc20 test (Erc20 단위 테스트 파일 실행)
     ```
     truffle(develop)> test ./test/ERC20.js
