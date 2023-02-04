@@ -71,6 +71,11 @@
     https://github.com/trufflesuite/truffle-hdwallet-provider
     truffle hdwallet provider 설정
 
+    테스트 이더 받기
+    ```
+    https://goerlifaucet.com/
+    ```
+
     goerli에 배포 진행
     ```
     truffle migrate --network goerli
