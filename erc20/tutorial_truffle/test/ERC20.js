@@ -34,6 +34,6 @@ contract('MyERC20', async (accounts) => {
     console.log(`endBalanceMsgSender is ${endBalanceMsgSender}`)
     const endBalanceTwo = await erc20Deployed.balanceOf(accountTwo);
     console.log(`endBalanceTwo is ${endBalanceTwo}`)
-    assert.equal(endBalanceMsgSender, endBalanceMsgSender, " balance is not correct");
+    assert.equal(endBalanceTwo, '0', " balance is not correct");
   })
 })
