@@ -7,10 +7,8 @@ https://docs.opensea.io/docs/metadata-standards
 ```
 {
   "description": "Fastcampus X 체인의정석.", 
-  "external_url": "https://openseacreatures.io/3", 
-  "image": "https://storage.googleapis.com/opensea-prod.appspot.com/puffs/3.png", 
-  "name": "Dave Starbelly",
-  "attributes": [ ... ]
+  "image": "https://raw.githubusercontent.com/hyunkicho/blockchain101/main/erc721/metadata/image.png", 
+  "name": "NFT example"
 }
 ```
 # truffle ERC721
