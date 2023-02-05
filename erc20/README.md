@@ -170,3 +170,20 @@ npx hardhat run scripts/deploy.ts --network matic
 npx hardhat run scripts/deploy.ts --network bsc
 npx hardhat run scripts/deploy.ts --network klaytn
 ```
+
+7. flat 파일 생성 후 verify
+
+waffle 설치
+```
+npm install --save-dev ethereum-waffle
+````
+
+flat 파일 생성
+```
+npx waffle flatten
+```
+
+이더스캔에서 verify and publish 누르기
+```
+https://goerli.etherscan.io/token/0x44b375b024518b424da3edaa9c5d493ec900d62d#code
+```
