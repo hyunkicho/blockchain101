@@ -50,3 +50,11 @@ node scripts/transferERC721.js --network goerli
 ```
 node scripts/events.js --network goerli
 ```
+
+# hardhat ERC721
+1. 컨트렉트 배포
+```
+npx hardhat run scripts/deploy.ts
+```
+
+2. 컨트렉트 테스트
