@@ -1,5 +1,5 @@
-const myErc721 = artifacts.require("MyERC20");
+const myErc721 = artifacts.require("MyERC721");
 
 module.exports = function(deployer) {
-  deployer.deploy(myErc20);
+  deployer.deploy(myErc721);
 };
