@@ -8,7 +8,7 @@ const contractAddress = process.env.ERC721;
 const web3 = new Web3(new Web3.providers.HttpProvider(process.env.RPC_URL));
 const contract = new web3.eth.Contract(contractABI, contractAddress);
 
-async function transferERC20(_to, _tokenID) {
+async function transferERC721(_to, _tokenID) {
   const singedTx = await web3.eth.accounts.signTransaction({
     from: process.env.PUBLIC_KEY,
     to: contractAddress,
@@ -21,4 +21,4 @@ async function transferERC20(_to, _tokenID) {
   .on('receipt', console.log);
 }
 
-transferERC20(process.env.TEST_PUBLIC_KEY, 1)
+transferERC721(process.env.TEST_PUBLIC_KEY, 2)

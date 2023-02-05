@@ -14,7 +14,7 @@ contract('MyERC721', async (accounts) => {
 
   it('should transfer erc721 token correctly', async () => {
     const erc721Deployed = await ERC721.deployed();
-    const ownerOfNFT = await erc721Deployed.ownerOf(0);
+    const ownerOfNFT = await erc721Deployed.ownerOf(tokenId.toString());
     console.log(`ownerOfNFT is ${ownerOfNFT}`)
     await erc721Deployed.transferFrom(msgSender,accountTwo,tokenId.toString());
     const ownerOfNFTAfter = await erc721Deployed.ownerOf(tokenId.toString());
