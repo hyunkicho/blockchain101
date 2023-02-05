@@ -2,15 +2,15 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
 import { expect } from 'chai';
-import chai from 'chai';
-import { solidity } from 'ethereum-waffle';
+// import chai from 'chai';
+// import { solidity } from 'ethereum-waffle';
 import { Contract } from 'ethers';
 import { ethers } from 'hardhat';
 
-chai.use(solidity);
+// chai.use(solidity);
 
-const name = 'ExampleToken';
-const symbol = 'ET';
+const name = 'MyToken';
+const symbol = 'MT';
 const decimals = 18;
 
 function changeToBigInt(amount: number) {
@@ -34,8 +34,8 @@ describe('Start Example ERC20 test', async () => {
 
   describe('Test Example ERC20 Metadata', () => {
     it('Should get correct name, symbol, decimal for the Example ERC20 Contract', async () => {
-      const ExampleERC20Factory = await ethers.getContractFactory('ExampleERC20');
-      exampleERC20 = await ExampleERC20Factory.deploy(name, symbol, decimals);
+      const ExampleERC20Factory = await ethers.getContractFactory('MyERC20');
+      exampleERC20 = await ExampleERC20Factory.deploy();
       await exampleERC20.deployed();
       expect(await exampleERC20.name()).to.equal(name);
       expect(await exampleERC20.symbol()).to.equal(symbol);

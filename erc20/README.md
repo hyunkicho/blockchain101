@@ -113,3 +113,60 @@
     ```
     node scripts/events.js
     ```
+
+# hardhat
+
+1. bignumber 테스트
+```
+npx hardhat run scripts/bigNumber.ts
+```
+2. 컨트렉트 배포
+```
+npx hardhat run scripts/deploy.ts  
+``
+goerli에 배포
+```
+npx hardhat run scripts/deploy.ts --network goerli
+```
+
+3. 컨트렉트 테스트
+```
+npx hardhat test  
+```
+4. 함수실행
+```
+npx hardhat run scripts/getBalance.ts
+```
+5. 이벤트 조회
+```
+npx hardhat run scripts/event.ts
+```
+
+6. 다중체인 배포
+faucet 받기
+```
+https://www.allthatnode.com/faucet/polygon.dsrv //폴리곤
+https://testnet.bnbchain.org/faucet-smart //바이낸스
+https://www.allthatnode.com/faucet/klaytn.dsrv //클레이튼
+```
+
+endpoint 가져오기 
+```
+https://www.allthatnode.com/polygon.dsrv //폴리곤
+https://bsc-testnet-rpc.allthatnode.com //바이낸스
+https://www.allthatnode.com/klaytn.dsrv //클레이튼
+```
+
+scan에서 확인하기
+```
+https://mumbai.polygonscan.com/ //폴리곤
+https://testnet.bscscan.com/ //바이낸스
+https://baobab.scope.klaytn.com/ //클레이튼
+```
+
+다중체인 배포해보기
+```
+npx hardhat run scripts/deploy.ts --network matic
+npx hardhat run scripts/deploy.ts --network bsc
+npx hardhat run scripts/deploy.ts --network klaytn
+```
