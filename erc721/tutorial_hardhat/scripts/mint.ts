@@ -4,7 +4,7 @@ async function mint(to: string, tokenId: number) {
   console.log('mint from ERC721 contract')
   const Erc721 = await ethers.getContractFactory("MyERC721");
   const erc721 = await Erc721.attach(contractAddress);
-  const mint = await erc721.mint(to, tokenId.toString());
+  const mint = await erc721.mint(to);
   console.log('mint :', mint);
 }
 

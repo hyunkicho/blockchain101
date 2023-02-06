@@ -25,10 +25,11 @@ truffle migrate --network goerli
     ```
     truffle develop
     ```
-    run erc20 test (Erc20 단위 테스트 파일 실행)
+    run erc721 test (Erc20 단위 테스트 파일 실행)
     ```
     truffle(develop)> test ./test/ERC721.js
     ```
+    
 3. 함수 실행
 
 잔고 조회
@@ -58,3 +59,30 @@ npx hardhat run scripts/deploy.ts
 ```
 
 2. 컨트렉트 테스트
+
+    run erc721 test (Erc721 단위 테스트 파일 실행)
+    ```
+    npx hardhat test test/erc721Test.ts
+    ```
+    run scenario erc721 test (Erc721 시나리오 테스트 파일 실행)
+    ```
+    npx hardhat test test/erc721ScenarioTest.ts
+    ```
+
+3. 함수 실행
+    민팅
+    ```
+    npx hardhat run scripts/mint.ts --network goerli
+    ```
+    조회
+    ```
+    npx hardhat run scripts/getBalance.ts --network goerli
+    ```
+    전송
+    ```
+    npx hardhat run scripts/transfer.ts --network goerli
+    ```
+    이벤트 조회
+    ```
+    npx hardhat run scripts/event.ts --network goerli
+    ```

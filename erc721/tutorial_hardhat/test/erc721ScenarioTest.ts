@@ -30,18 +30,27 @@ describe('Start Example ERC721 Scenario test', async () => {
 
   it('Should get transfer correctly for the Example ERC721 Contract', async () => {
       const { exampleERC721, owner, addr1, addr2 } = await loadFixture(ERC721Fixture);
-
       await exampleERC721.mint(addr1.address);
       expect(await exampleERC721.ownerOf(1)).to.equal(addr1.address);
   });
 
   it('Example ERC721 Contract should burn and mint erc721 token clearly', async () => {
-    const { exampleERC721, owner, addr1, addr2 } = await loadFixture(ERC721Fixture);
-    await exampleERC721.mint(owner.address);
-    expect(await exampleERC721.ownerOf(1)).to.equal(owner.address);
-    await exampleERC721.burn(1);
-    await exampleERC721.burn(0);
-    await exampleERC721.mint(addr1.address);
-    expect(await exampleERC721.ownerOf(2)).to.equal(addr1.address);
+      const { exampleERC721, owner, addr1, addr2 } = await loadFixture(ERC721Fixture);
+      await exampleERC721.mint(owner.address);
+      expect(await exampleERC721.ownerOf(1)).to.equal(owner.address);
+      await exampleERC721.burn(1);
+      await exampleERC721.burn(0);
+      await exampleERC721.mint(addr1.address);
+      expect(await exampleERC721.ownerOf(2)).to.equal(addr1.address);
+  });
+
+  it('Example ERC721 Contract should burn and mint erc721 token clearly 2', async () => {
+      const { exampleERC721, owner, addr1, addr2 } = await loadFixture(ERC721Fixture);
+      await exampleERC721.mint(addr1.address);
+      expect(await exampleERC721.ownerOf(1)).to.equal(addr1.address);
+      await exampleERC721.connect(addr1).burn(1);
+      await exampleERC721.burn(0);
+      await exampleERC721.mint(addr2.address);
+      expect(await exampleERC721.ownerOf(2)).to.equal(addr2.address);
   });
 });
