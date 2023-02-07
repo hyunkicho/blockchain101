@@ -19,4 +19,16 @@ hardhat & ethers
 환경에서 트랜잭션 조회, 처리, 테스트, 이벤트 조회를 모두 진행하고
 다중 체인에 배포하여 봅니다.
 
+3. erc721
+openzeppelin의 erc721 컨트렉트를 기준으로
+truffle & javascript 
+hardhat & ethers 
+환경에서 트랜잭션 조회, 처리, 테스트, 이벤트 조회를 모두 진행하고
+다중 체인에 배포하여 봅니다.
+
+4. erc1155
+openzeppelin의 erc1155 컨트렉트를 기준으로
+hardhat & ethers 
+환경에서 트랜잭션 조회, 처리, 테스트, 이벤트 조회를 모두 진행하고
+다중 체인에 배포하여 봅니다.
 

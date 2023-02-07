@@ -4,13 +4,15 @@
 sequenceDiagram
     actor user
     actor admin
-    participant vending machine contract as contract
+    participant contract as vending machine contract
     user ->>+ contract : buy
     contract -->>- user : tx hash
     admin ->>+ contract : refill
-    contract -->>- user : tx hash
+    contract -->>- admin : tx hash
 ```
-<img width="718" alt="image" src="https://user-images.githubusercontent.com/35443121/210163061-3f0849b5-f6ef-4271-9128-a60f0a3e5add.png">
+
+URL
+https://mermaid.live/edit#pako:eNptUTFuwzAM_ArBtfEHNGTq2qlboYWV6FiARbkyVTQI8vfSVZ0EaCVA4B2PB-J0wVAio8OVPxpL4OdEp0rZC9ihoKVCW7k-Yoo5SScWqppCWkgUQhGtpgBa4ZMlJjlBpjAl4VuvT22GMByPT_cZB-_t3Ls3bjDJ0MUO9AsmWqffPbYN_jhUHtM8_2vSBx5c7ndT72_HeMDMNVOKlstlYzzqxJk9Oisjj9Rm9ejlalJqWl7PEtBpbXzAtkTSPcadtIDeSjE40rwa5pgsyZce_c8PXL8BJcaClg
 
 # Truffle & web3 javascript 기본예제
 
