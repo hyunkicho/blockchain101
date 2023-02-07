@@ -1,15 +1,18 @@
 import { ethers } from "hardhat";
 const contractAddress = process.env.ERC1155!;
-async function safeTransferFrom(from: string, to: string, id: number, amount: number) {
-  console.log('transfer from ERC1155 contract')
+const account = process.env.PUBLIC_KEY!;
+
+async function getBalance(contractAddress: string, id: string) {
+  console.log('get token uri from erc1155 contract')
   const Erc1155 = await ethers.getContractFactory("MyERC1155");
   const erc1155 = await Erc1155.attach(contractAddress);
-  const transfer = await erc1155.safeTransferFrom(from, to, id ,amount, "0x");
-  console.log('transfer :', transfer);
+  const uri = await erc1155.uri(id); //each NFT Series has id instead of CA
+  console.log(`ur id ${id} : ${uri}`)
 }
+
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
-safeTransferFrom(process.env.PUBLIC_KEY!, process.env.TEST_PUBLIC_KEY!, 0, 10).catch((error) => {
+getBalance(contractAddress, '0').catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });
