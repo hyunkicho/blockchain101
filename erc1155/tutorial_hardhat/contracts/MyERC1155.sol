@@ -3,18 +3,17 @@ pragma solidity ^0.8.13;
 import "@openzeppelin/contracts/token/ERC1155/presets/ERC1155PresetMinterPauser.sol";
 
 contract MyERC1155 is ERC1155PresetMinterPauser {
-    constructor() ERC1155PresetMinterPauser("https://raw.githubusercontent.com/hyunkicho/blockchain101/main/erc1155/metadata/") {
-        _setURI(0,'/series1/');
-        _setURI(0,'/series2/');
-        _setURI(0,'/series3/');
-
+    constructor() ERC1155PresetMinterPauser("1") {
+        setURI(0,"series1/");
+        setURI(1,"series2/");
+        setURI(2,"series3/");
         mint(msg.sender,0,10,''); //data is needed only when neccessary
     }
 
     using Strings for uint256;
 
     // Optional base URI
-    string private _baseURI = "";
+    string private _baseURI = "https://raw.githubusercontent.com/hyunkicho/blockchain101/main/erc1155/metadata/";
 
     // Optional mapping for token URIs
     mapping(uint256 => string) private _tokenURIs;
@@ -23,7 +22,7 @@ contract MyERC1155 is ERC1155PresetMinterPauser {
         string memory tokenURI = _tokenURIs[tokenId];
 
         // If token URI is set, concatenate base URI and tokenURI (via abi.encodePacked).
-        return bytes(tokenURI).length > 0 ? string(abi.encodePacked(_baseURI, tokenURI)) : super.uri(tokenId);
+        return bytes(tokenURI).length > 0 ? string(abi.encodePacked(_baseURI, tokenURI, tokenId.toString())) : super.uri(tokenId);
     }
 
     function setURI(uint256 tokenId, string memory tokenURI) public {
