@@ -92,3 +92,13 @@
     function previewWithdraw(uint256 assets) external view returns (uint256);
     function previewRedeem(uint256 shares) external view returns (uint256);
     ```
+
+3. 배포 해보기
+    ```
+    npx hardhat run scripts/deploy.ts
+    ```
+
+4. 테스트 해보기
+    ```
+    npx hardhat run test
+    ```
