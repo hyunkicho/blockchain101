@@ -4,9 +4,9 @@ import "@openzeppelin/contracts/token/ERC1155/presets/ERC1155PresetMinterPauser.
 
 contract MyERC1155 is ERC1155PresetMinterPauser {
     constructor() ERC1155PresetMinterPauser("1") {
-        setURI(0,"series1/");
-        setURI(1,"series2/");
-        setURI(2,"series3/");
+        setURI(0,"series1/0");
+        setURI(1,"series1/1");
+        setURI(2,"series2/0");
         mint(msg.sender,0,10,''); //data is needed only when neccessary
     }
 
@@ -22,7 +22,7 @@ contract MyERC1155 is ERC1155PresetMinterPauser {
         string memory tokenURI = _tokenURIs[tokenId];
 
         // If token URI is set, concatenate base URI and tokenURI (via abi.encodePacked).
-        return bytes(tokenURI).length > 0 ? string(abi.encodePacked(_baseURI, tokenURI, tokenId.toString())) : super.uri(tokenId);
+        return bytes(tokenURI).length > 0 ? string(abi.encodePacked(_baseURI, tokenURI)) : super.uri(tokenId);
     }
 
     function setURI(uint256 tokenId, string memory tokenURI) public {
