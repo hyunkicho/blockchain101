@@ -12,7 +12,7 @@ async function getBalance(contractAddress: string, account: string, id: string) 
 
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
-getBalance(contractAddress, account, '0').catch((error) => {
+getBalance(contractAddress, account, '1').catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });

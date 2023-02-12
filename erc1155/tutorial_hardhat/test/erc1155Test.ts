@@ -8,9 +8,6 @@ import { Contract } from 'ethers';
 import { ethers } from 'hardhat';
 
 // chai.use(solidity);
-
-const name = 'MyNFT';
-const symbol = 'MNFT';
 // const tokenURI = 'https://raw.githubusercontent.com/hyunkicho/blockchain101/main/erc1155/metadata/';
 
 describe('Start Example ERC1155 test', async () => {
