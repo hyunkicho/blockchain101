@@ -12,6 +12,7 @@ chai.use(solidity);
 
 const name = 'Myerc721A';
 const symbol = '721A';
+const price = 0.001;
 // const tokenURI = 'https://raw.githubusercontent.com/hyunkicho/blockchain101/main/ERC721A/metadata/';
 
 describe('Start Example ERC721A test', async () => {
@@ -38,13 +39,13 @@ describe('Start Example ERC721A test', async () => {
 
   describe('Test Mint exampleERC721A', () => {
     it('Should  Mint corrrectly for the Example ERC721A Contract', async () => {
-      await exampleERC721A.connect(addr1).mint(4, {value: ethers.utils.parseEther('2')})
+      await exampleERC721A.connect(addr1).mint(2, {value: ethers.utils.parseEther((price*2).toString())})
 
-      expect(exampleERC721A.connect(addr1).mint(4, {value: ethers.utils.parseEther('1')}))
+      expect(exampleERC721A.connect(addr1).mint(2, {value: ethers.utils.parseEther('1')}))
       .to.be.revertedWith('MyERC721A : msg.value is not correct')
 
-      expect(await exampleERC721A.totalSupply()).to.equal('4');
-      expect(await exampleERC721A.balanceOf(addr1.address)).to.equal('4');
+      expect(await exampleERC721A.totalSupply()).to.equal('2');
+      expect(await exampleERC721A.balanceOf(addr1.address)).to.equal('2');
     });
   });
 
