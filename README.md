@@ -7,6 +7,22 @@ https://www.youtube.com/watch?v=WNxKsA0gfc8&t=5s
 
 학습 순서
 
+* 현재 토큰 표준 실습에 있어서 각 소스 코드에는 optimize가 적용이 되지 않았는데 배포시 공간 절약과 가스비를 절감하는 작업이 필요하다면 아래와 같이 optimizer를 기본 설정 값으로 넣어두는 것은 추천드립니다. (run 숫자를 크게 잡아도 되지만 과도하게 클 경우 오히려 비효율 적일 수도 있습니다.)
+
+```
+module.exports = {
+  solidity: {
+    version: "0.8.9",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 1000,
+      },
+    },
+  },
+};
+```
+
 1. basics
 이더리움 공식 문서의 VendingMachine 컨트렉트를 기준으로
 truffle & javascript 
