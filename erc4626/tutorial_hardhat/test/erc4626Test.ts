@@ -77,22 +77,23 @@ describe('Start Example ERC4626 test', async () => {
   describe('Check max withdraw & reddem exampleERC4626', () => {
       it('Should get max withdraw & redeem correctly for the Example ERC4626 Contract', async () => {
         const { exampleERC20, asset, decimal, exampleERC4626, owner, addr1, addr2, changeToEthers } = await loadFixture(ERC4626Fixture);
-        const shares = await exampleERC4626.previewDeposit(changeToEthers(amount));
         
         let maxWithdraw = await exampleERC4626.maxWithdraw(addr1.address)
         console.log("maxWithdraw value is : ", maxWithdraw);
-
+        
         let maxRedeem = await exampleERC4626.maxWithdraw(addr1.address)
         console.log("maxRedeem value is : ", maxRedeem);
 
+        const shares = await exampleERC4626.previewDeposit(changeToEthers(amount));
+        
         await expect(exampleERC4626.connect(addr1).deposit(changeToEthers(amount), addr1.address))
-          .to.emit(exampleERC4626, 'Deposit')
+        .to.emit(exampleERC4626, 'Deposit')
           .withArgs(addr1.address, addr1.address, changeToEthers(amount), shares);
 
         maxWithdraw = expect(await exampleERC4626.maxWithdraw(addr1.address))
         .to.equal(changeToEthers(amount))
     
-        maxRedeem = expect(await exampleERC4626.maxWithdraw(addr1.address))
+        maxRedeem = expect(await exampleERC4626.maxRedeem(addr1.address))
         .to.equal(changeToEthers(amount))
       });
     })

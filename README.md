@@ -1,15 +1,17 @@
 # basic tutorial for dapp developer
 
-* 본 경로의 강의는 패스트캠퍼스 및 "체인의 정석"으로 활동할 강의에서 자료로 사용될 예정입니다.
+This repo is for students who wants to be a solidity developer
+
+* 현재 레포지토리의 경우 패스트캠퍼스에서 사용됩니다. (오류 발견시 리드미에 바로 업데이트 예정)
 https://www.youtube.com/watch?v=WNxKsA0gfc8&t=5s
-
+* "체인의 정석"으로 활동할 강의에서 자료로 계속 업데이트 되어 사용될 예정입니다.
 * 외부 활용 시 "체인의 정석"으로 출저를 남겨주시길 바랍니다.
+* 개발 이외의 블록체인 시장 트렌드 및 기술 트렌드는 아래 채널에 꾸준히 업데이트 중입니다.
 
-학습 순서
 
 ## 기초 학습 & ERC 토큰들 표준
 
-* 현재 토큰 표준 실습에 있어서 각 소스 코드에는 optimize가 적용이 되지 않았는데 배포시 공간 절약과 가스비를 절감하는 작업이 필요하다면 아래와 같이 optimizer를 기본 설정 값으로 넣어두는 것은 추천드립니다. (run 숫자를 크게 잡아도 되지만 과도하게 클 경우 오히려 비효율 적일 수도 있습니다.)
+* 현재 토큰 표준 실습에 있어서 각 소스 코드에는 optimize가 적용이 되지 않았는데 배포시 공간 절약과 가스비를 절감하는 작업이 필요하다면 아래와 같이 optimizer를 기본 설정 값으로 넣어두는 것은 추천드립니다. (run 숫자를 크게 잡아도 되지만 과도하게 클 경우 오히려 비효율 적일 수도 있습니다. 배포 시에는 기본값인 200을 추천드립니다.)
 
 hardhat.config.ts 에서 아래 내용 추가
 ```
@@ -23,6 +25,8 @@ hardhat.config.ts 에서 아래 내용 추가
       }
   },
 ```
+
+* IPFS 메타데이터 저장의 경우 컨트렉트와 관련된 내용이 아니므로 본 실습에서는 다루지 않습니다. 따라서 깃허브의 저장 공간을 사용합니다. (패스트 캠퍼스 수강생의 경우 뒤에서 게뜨님이 직접 다룰 예정)
 
 1. basics
 이더리움 공식 문서의 VendingMachine 컨트렉트를 기준으로
@@ -56,3 +60,27 @@ erc721에서 가스비를 절감한 erc721A의 기법에 대해 학습하고 배
 6. erc4626
 erc20의 4626 extension을 학습해 봅니다.
 
+Bouns. KIP37 (Klaytn)
+클레이튼의 KIP37 표준에 맞춘 NFT 소스 코드 입니다.
+https://github.com/hyunkicho/deployKIP37
+
+## 현업에서 알면 든든한 주요 코드들
+
+1. Governance (open-zeppelin)
+
+
+
+
+## 체인의 정석 SNS
+트위터 (블로그 내용 요약) : @stone_chain
+유튜브 (영상 설명) : https://www.youtube.com/@stone_chain
+
+## 체인의 정석 블로그
+미디엄 (블록체인 & 최신 트렌드) : https://chohyunki.medium.com/
+개발블로그 (블록체인 + 백엔드 개발 & 실무 팁) :  https://it-timehacker.tistory.com/
+네이버 블로그 (블록체인 시장분석 & 투자) : https://m.blog.naver.com/PostList.naver?blogId=dmsrlgusrl
+
+## 체인의 정석 무료 멘토링
+국비 지원 무료 멘토링 : https://gomentoring.or.kr/contents/mentoring/mentor_detail.php?a_gb=mentor&a_cd=1&a_item=0&g_flag=young&mentorID=cnldjq10
+
+교육, 멘토링, 마케팅 문의 : timehacker95@gmail.com
