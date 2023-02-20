@@ -15,14 +15,14 @@ describe('Start Example AccessControl test', async () => {
   let accessControl: Contract;
   //signers
   let owner: SignerWithAddress;
-  let newOwner: SignerWithAddress;
+  let newRole: SignerWithAddress;
 
   it('Set data for AccessControl test', async () => {
-    [owner, newOwner] = await ethers.getSigners(); // get a test address
-    console.log(`${owner} is owner`)
+    [owner, newRole] = await ethers.getSigners(); // get a test address
+    console.log(`${ethers.utils.getAddress(owner.address)} is owner`)
   });
 
-  describe('Test AccessControl Metadata', () => {
+  describe('Test AccessControl', () => {
     it('Should deploy Ownable Contract correctly', async () => {
       const AccessControlTestFactory = await ethers.getContractFactory('AccessControlTest');
       accessControl = await AccessControlTestFactory.deploy();
@@ -30,21 +30,18 @@ describe('Start Example AccessControl test', async () => {
     });
   });
 
-  describe('Test transferOwnership', () => {
+  describe('Test hasRole', () => {
     it('Should  transferOwnership corrrectly for the Example Ownable Contract', async () => {
-      // Define a custom role
-      // const DEFAULT_ADMIN_ROLE = ethers.utils.id("DEFAULT_ADMIN_ROLE");
       const isAdmin = await accessControl.hasRole(await accessControl.DEFAULT_ADMIN_ROLE(), owner.address);
       expect(isAdmin).to.be.true;
     });
   })
 
-  // describe('Test acceptOwnership', () => {
-  //   it('Should  acceptOwnership corrrectly for the Example Ownable Contract', async () => {
-  //     expect(await AccessControlTest.connect(newOwner).acceptOwnership())
-  //       .to.emit(AccessControlTest, 'OwnershipTransferred')
-  //       .withArgs(owner.address, newOwner.address);
-  //       expect(await AccessControlTest.owner()).to.equal(newOwner.address);
-  //     });
-  // })
+  describe('Test set more rule', () => {
+    it('Should  set more rule corrrectly for the Example Ownable Contract', async () => {
+    const NEW_ROLE = ethers.utils.id("NEW_ROLE");
+    await accessControl.grantRole(NEW_ROLE, newRole.address);
+    expect(await accessControl.hasRole(NEW_ROLE, newRole.address)).to.be.true
+    })
+  })
 })

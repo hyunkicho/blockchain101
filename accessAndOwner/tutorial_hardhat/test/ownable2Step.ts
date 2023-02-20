@@ -21,7 +21,7 @@ describe('Start Example Ownable 2Step test', async () => {
     [owner, newOwner] = await ethers.getSigners(); // get a test address
   });
 
-  describe('Test Ownable 2Step Metadata', () => {
+  describe('Test Ownable 2Step', () => {
     it('Should deploy Ownable Contract correctly', async () => {
       const OwnableTestFactory = await ethers.getContractFactory('Ownable2StepTest');
       ownableTest = await OwnableTestFactory.deploy();

@@ -1,7 +1,9 @@
-// // SPDX-License-Identifier: MIT
-// pragma solidity ^0.8.13;
-// import "@openzeppelin/contracts/access/AccessControl.sol";
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.13;
+import "./AccessControl.sol";
 
-// contract AccessControlTest is AccessControl {
-//     super(bytes32 public constant DEFAULT_ADMIN_ROLE) = msg.sender;
-// }
+contract AccessControlTest is AccessControl {
+    constructor() {
+        _grantRole(DEFAULT_ADMIN_ROLE, _msgSender());
+    }
+}
