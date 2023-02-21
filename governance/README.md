@@ -102,5 +102,9 @@ npx hardhat run scripts/deploy.ts
 propse 시점을 기준으로 스냅샷을 찍는 votingDelay가 정해지며 deadline이 정해집니다.
 snap shot은 votingDelay + blockNumber
 deadline은 snapshot + voting period
+해당 시점이 잘 맞지 않으면 오류가 나게 됩니다.
 
 6. 테스트 하기
+```
+npx hardhat test
+```
