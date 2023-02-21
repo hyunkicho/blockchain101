@@ -67,7 +67,17 @@ https://github.com/hyunkicho/deployKIP37
 ## 현업에서 알면 든든한 주요 코드들
 
 1. Governance (open-zeppelin)
+openzepplin의 governor 컨트렉트, erc20 컨트렉트 ,erc721 vote extension을
+특정 nft를 통해 DAO가 운영되도록 구현합니다. 
+(timelock, complike 제외한 순수 governor와 nft 컨트렉트로 원하는 정족수를 커스터마이징 할 수 있습니다.)
 
+2. EIP712 서명
+오픈씨, 유니스왑, Governor 등 주요 서비스 들에서 많이 쓰이는 EIP712 서명을 학습합니다.
+복잡한 EIP712 서명을 테스트 코드를 통해 배웁니다.
+
+3. accessAndOwner
+관리자 권한을 다루는데 가장 많이 사용되는 Ownable 외에도
+openzepplin의 대표적인 Owner2Step, AccessRole를 사용하여 다양한 관리자 권한 관리 컨트렉트를 사용해봅니다.
 
 
 
