@@ -8,6 +8,22 @@ https://www.youtube.com/watch?v=WNxKsA0gfc8&t=5s
 * 외부 활용 시 "체인의 정석"으로 출저를 남겨주시길 바랍니다.
 * 개발 이외의 블록체인 시장 트렌드 및 기술 트렌드는 아래 채널에 꾸준히 업데이트 중입니다.
 
+## 참고
+모든 실습은 다음과 같이 .env라는 이름의 파일을 따로 생성해 주셔야 합니다.
+
+.env
+```
+PUBLIC_KEY='공개키'
+TEST_PUBLIC_KEY='공개키'
+PRIVATE_KEY='비밀키'
+TEST_PRIVATE_KEY='비밀키'
+ERC1155='컨트렉트 주소'
+RPC_URL='https://ethereum-goerli-rpc.allthatnode.com'
+RPC_URL_MATIC='https://polygon-testnet-rpc.allthatnode.com:8545'
+RPC_URL_BSC='https://bsc-testnet-rpc.allthatnode.com'
+RPC_URL_KLAYTN='https://klaytn-baobab-rpc.allthatnode.com:8551'
+```
+
 
 ## 기초 학습 & ERC 토큰들 표준
 

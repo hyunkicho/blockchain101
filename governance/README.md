@@ -108,3 +108,8 @@ deadline은 snapshot + voting period
 ```
 npx hardhat test
 ```
+
+7. 오픈제플린 이슈
+   스냅샷 시점이 잘 안맞으면 투표는 되지만 카운트가 안되는 상황 발생
+   이 경우 오픈 제플린에서 해당 함수를 내부적으로 0으로 호출하는 경우의 수도 유효하게 두었기 때문에 일부러 막지 않았다고 합니다.
+   https://github.com/OpenZeppelin/openzeppelin-contracts/issues/4071
