@@ -1,0 +1,107 @@
+k<!DOCTYPE html>
+<html>
+  <body>
+    <div>
+      <button class="enableEthereumButton">Enable Ethereum</button>
+      <h2>Account: <span class="showAccount"></span></h2>
+      <h3>Sign Typed Data V4</h3>
+      <button type="button" id="signTypedDataV4Button">sign typed data v4</button>
+    </div>
+  </body>
+  <script src="https://cdn.ethers.io/lib/ethers-5.2.esm.min.js" type="application/javascript"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://unpkg.com/@metamask/detect-provider/dist/detect-provider.min.js"></script>
+  <script type="text/javascript">
+
+    if (typeof window.ethereum === 'undefined') {
+        alert('MetaMask is uninstalled!');
+      }
+
+    const ethereum = window.ethereum;
+    const ethereumButton = document.querySelector('.enableEthereumButton');
+    const showAccount = document.querySelector('.showAccount');
+
+    ethereumButton.addEventListener('click', () => {
+      getAccount();
+    });
+
+    async function getAccount() {
+      const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+      const account = accounts[0];
+      showAccount.innerHTML = account;
+    }
+
+    signTypedDataV4Button.addEventListener('click', async function (event) {
+        event.preventDefault();
+        console.log("signTypedDataV4Button")
+        const from = await ethereum.request({ method: 'eth_requestAccounts' });
+       const fromAddress = from[0];
+       console.log(fromAddress)
+
+        const msgParams = JSON.stringify({
+          domain: {
+            // Give a user friendly name to the specific contract you are signing for.
+            name: "MyEIP712", // 메타마스크에 표시되는 컨트렉트 이름, 예를들어 0000거래소
+            // Just let's you know the latest version. Definitely make sure the field name is correct.
+            version: "1", // 눈에 보이는 명시하는 버전
+            // Defining the chain aka Rinkeby testnet or Ethereum Main Net
+            chainId: "1", 
+            // If name isn't enough add verifying contract to make sure you are establishing contracts with the proper entity
+            verifyingContract: "0x5fbdb2315678afecb367f032d93f642f64180aa3" // 사인을 하는 컨트렉트의 주소, 0000거래소의 CA
+          },
+    
+          // Defining the message signing data content.
+          message: {
+            /*
+            - Anything you want. Just a JSON Blob that encodes the data you want to send
+            - No required fields
+            - This is DApp Specific
+            - Be as explicit as possible when building out the message schema.
+            */
+            from: fromAddress,
+            to: "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+            data: "some data here"
+          },
+          // Refers to the keys of the *types* object below.
+          primaryType: "Message",
+          types: {
+            Message: [
+              { name: "from", type: "address" },
+              { name: "to", type: "address" },
+              { name: "data", type: "string" },
+            ],
+          },
+        });
+
+        console.log(msgParams);
+
+        const accounts = await ethereum.request({ method: 'eth_accounts' });
+        console.log(accounts);
+
+        var params = [accounts[0], msgParams];
+        var method = 'eth_signTypedData_v4';
+
+        web3.currentProvider.sendAsync(
+          {
+            method,
+            params,
+            from : accounts[0],
+          },
+          function (err, result) {
+            if (err) return console.dir(err);
+            if (result.error) {
+              alert(result.error.message);
+            }
+            if (result.error) return console.error('ERROR', result);
+            console.log('TYPED SIGNED:' + JSON.stringify(result.result));
+          }
+        );
+        })
+        .catch((error) => {
+          console.log(error)
+          // If the request fails, the Promise will reject with an error.
+        });          
+    ;
+
+  </script>
+</html>

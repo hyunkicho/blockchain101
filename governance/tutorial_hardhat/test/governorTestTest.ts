@@ -78,7 +78,7 @@ describe('Start Example ERC721 Governor test', async () => {
       console.log("team address :", teamAddress)
       const grantAmount = 100;
       await exampleERC20.mint(governor.address, changeToBigInt(grantAmount))
-      transferCalldata = erc20Token.interface.encodeFunctionData("transfer", [teamAddress, grantAmount]);
+      transferCalldata = erc20Token.interface.encodeFunctionData("transfer", [teamAddress, changeToBigInt(grantAmount)]);
       console.log("transferCalldata :", transferCalldata)
 
       let proporsalId = await governor.callStatic.propose(
