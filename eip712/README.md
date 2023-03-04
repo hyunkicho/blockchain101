@@ -145,3 +145,149 @@ abstract contract EIP712 {
 
 ```
 
+3. UseCase - Uniswap V2 permit
+    https://github.com/Uniswap/permit2/blob/main/src/AllowanceTransfer.sol
+
+    * 최근에 나온 Permit2를 통해 살펴봅시다.
+
+    signature.verify를 하게 되면 eip712 서명을 통해 검증을 하고 보내게 되는 식이다.
+    트랜잭션을 2번 실행하는 대신 1번의 과정을 eip712 서명을 통해 줄인 모습이다.
+
+
+    https://github.com/Uniswap/permit2/blob/main/src/libraries/PermitHash.sol
+    hash의 내용의 경우 따로 라이브러리를 두어 만들어 두었다.
+
+
+    https://github.com/Uniswap/permit2/blob/main/src/libraries/Allowance.sol
+    라이브러리의 내용을 간략하게 담기 위해서 uin256 숫자형 자료에 여러 내용을 넣고 pack을 하는 식으로 데이터를 다룬다. (erc721A와 비슷)
+    ```
+    /// @notice Computes the packed slot of the amount, expiration, and nonce that make up PackedAllowance
+    function pack(uint160 amount, uint48 expiration, uint48 nonce) internal pure returns (uint256 word) {
+        word = (uint256(nonce) << 208) | uint256(expiration) << 160 | amount;
+    }
+    ```
+
+    Struct를 인터페이스에 구현하여 데이터를 서명
+
+    Permit의 경우 특정 기간이 있고 nonce를 통해서 토큰을 보내주는 로직
+    ```
+    /// @notice The permit data for a token
+    struct PermitDetails {
+        // ERC20 token address
+        address token;
+        // the maximum amount allowed to spend
+        uint160 amount;
+        // timestamp at which a spender's token allowances become invalid
+        uint48 expiration;
+        // an incrementing value indexed per owner,token,and spender for each signature
+        uint48 nonce;
+    }
+
+    /// @notice The permit message signed for a single token allownce
+    struct PermitSingle {
+        // the permit data for a single token alownce
+        PermitDetails details;
+        // address permissioned on the allowed tokens
+        address spender;
+        // deadline on the permit signature
+        uint256 sigDeadline;
+    }
+    ```
+
+    AllowanceTransfer의 경우 allownace에 필요한 정보를 구조체 형태로 먼저 서명
+    ```
+    /// @notice Details for a token transfer.
+    struct AllowanceTransferDetails {
+        // the owner of the token
+        address from;
+        // the recipient of the token
+        address to;
+        // the amount of the token
+        uint160 amount;
+        // the token to be transferred
+        address token;
+    }
+    ```
+
+
+    Permit2 - signatureTrnasfer.sol (allownace 사용안하고 바로 보내줌) - permitTransferFrom)
+
+    // owner가 서명한 permit 데이터 (permitTrnasfeFrom 구조체의 정보)를 받아와서 
+    //데드라인과 amount를 가져와서 각각 유효성 검사를 하고
+    //nonce를 가져와서 순서를 조정하고
+    //verify로 실제 owner가 서명한 것인지 검증한 후에
+    //safeTransferFrom을 보내줘 버린다.
+    
+    function _permitTransferFrom(
+        PermitTransferFrom memory permit,
+        SignatureTransferDetails calldata transferDetails,
+        address owner,
+        bytes32 dataHash,
+        bytes calldata signature
+    ) private {
+        uint256 requestedAmount = transferDetails.requestedAmount;
+
+        if (block.timestamp > permit.deadline) revert SignatureExpired(permit.deadline);
+        if (requestedAmount > permit.permitted.amount) revert InvalidAmount(permit.permitted.amount);
+
+        _useUnorderedNonce(owner, permit.nonce);
+
+        signature.verify(_hashTypedData(dataHash), owner);
+
+        ERC20(permit.permitted.token).safeTransferFrom(owner, transferDetails.to, requestedAmount);
+    }
+
+    Permit2 - AllownaceTransfer.sol (allownace 사용)
+    AllowanceTransfer를 사용한 함수는 모두 실행 됨
+    ```
+        /// @inheritdoc IAllowanceTransfer
+        function permit(address owner, PermitSingle memory permitSingle, bytes calldata signature) external {
+            if (block.timestamp > permitSingle.sigDeadline) revert SignatureExpired(permitSingle.sigDeadline);
+
+            // Verify the signer address from the signature.
+            signature.verify(_hashTypedData(permitSingle.hash()), owner);
+
+            _updateApproval(permitSingle.details, owner, permitSingle.spender);
+        }
+    ```
+
+    owner값을 통해 서명을 한 주체가 검증이 되면 그 이후에 Approve에 필요한 값을 가져와서 allowance를 업데이트 한다.
+    ```
+    /// @notice Sets the new values for amount, expiration, and nonce.
+    /// @dev Will check that the signed nonce is equal to the current nonce and then incrememnt the nonce value by 1.
+    /// @dev Emits a Permit event.
+    function _updateApproval(PermitDetails memory details, address owner, address spender) private {
+        uint48 nonce = details.nonce;
+        address token = details.token;
+        uint160 amount = details.amount;
+        uint48 expiration = details.expiration;
+        PackedAllowance storage allowed = allowance[owner][token][spender];
+
+        if (allowed.nonce != nonce) revert InvalidNonce();
+
+        allowed.updateAll(amount, expiration, nonce);
+        emit Permit(owner, token, spender, amount, expiration, nonce);
+    }
+    ```
+
+
+    transferFrom 실행
+    ```
+        function transferFrom(AllowanceTransferDetails[] calldata transferDetails) external {
+            unchecked {
+                uint256 length = transferDetails.length;
+                for (uint256 i = 0; i < length; ++i) {
+                    AllowanceTransferDetails memory transferDetail = transferDetails[i];
+                    _transfer(transferDetail.from, transferDetail.to, transferDetail.amount, transferDetail.token);
+                }
+            }
+        }
+    ```
+4. UseCase - Opensea WyvernExchange
+    오픈씨의 경우 코드가 복잡하기에 아래 제가 작성한 미디엄 글을 통해서 살펴보도록 하겠습니다.
+
+    오픈씨의 거래구조
+    https://medium.com/curg/%EC%98%A4%ED%94%88%EC%94%A8-%EA%B1%B0%EB%9E%98%EC%86%8C%EC%9D%98-%EA%B5%AC%EC%A1%B0-%EC%A7%81%EC%A0%91-%EB%9C%AF%EC%96%B4%EB%B3%B4%EC%9E%90-253469a9224
+
+    오픈씨의 EIP712 서명
+    https://medium.com/curg/%EC%98%A4%ED%94%88%EC%94%A8-%EC%BB%A8%ED%8A%B8%EB%A0%89%ED%8A%B8%EC%9D%98-%EB%B0%9C%EC%A0%84-%EA%B3%BC%EC%A0%95%EA%B3%BC-%EB%B2%84%EC%A0%84%EB%B3%84-%ED%95%B5%EC%8B%AC-%EB%A1%9C%EC%A7%81-%EB%B6%84%EC%84%9D-c1c2f592242
