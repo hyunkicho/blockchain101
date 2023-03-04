@@ -80,20 +80,28 @@ Bouns. KIP37 (Klaytn)
 클레이튼의 KIP37 표준에 맞춘 NFT 소스 코드 입니다.
 https://github.com/hyunkicho/deployKIP37
 
-## 현업에서 알면 든든한 주요 코드들
+## 토큰 외에 현업에서 자주 쓰이는 주요 코드들 리뷰
 
 1. Governance (open-zeppelin)
 openzepplin의 governor 컨트렉트, erc20 컨트렉트 ,erc721 vote extension을
 특정 nft를 통해 DAO가 운영되도록 구현합니다. 
 (timelock, complike 제외한 순수 governor와 nft 컨트렉트로 원하는 정족수를 커스터마이징 할 수 있습니다.)
 
-2. EIP712 서명
+2. EIP712 서명 (open-zeppelin)
 오픈씨, 유니스왑, Governor 등 주요 서비스 들에서 많이 쓰이는 EIP712 서명을 학습합니다.
 복잡한 EIP712 서명을 테스트 코드를 통해 배웁니다.
+EIP712 서명을 직접 메타마스크로 해보고 대표 프로덕트의 유즈케이스도 학습합니다.
 
-3. accessAndOwner
+3. accessAndOwner (컨트렉트 보안)
 관리자 권한을 다루는데 가장 많이 사용되는 Ownable 외에도
 openzepplin의 대표적인 Owner2Step, AccessRole를 사용하여 다양한 관리자 권한 관리 컨트렉트를 사용해봅니다.
+
+4. multisigWallt (컨트렉트 보안)
+실무에서 컨트렉트의 보안성을 높이려는 목적으로 멀티시그가 사용된다는 가정 하에 가장 빈번하게 쓰이는 gnosis의 멀티시그 지갑을 통하여
+멀티시그 컨트렉트를 배포해보고 테스트 해봅니다.
+
+5. Pausable and re-enterancy (컨트렉트 보안)
+실무에서 컨트렉트 보안성 향상을 하기 위해 자주 사용하는 옵션인 Pausable과 Re-entrancy에 대해 학습하고 이를 적용해 봅니다.
 
 
 
