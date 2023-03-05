@@ -44,52 +44,50 @@ contract MultiSigWallet {
      *  Modifiers
      */
     modifier onlyWallet() {
-        require(msg.sender == address(this), "MultisigWallet: address is not a multisig wallet");
+        require(msg.sender == address(this));
         _;
     }
 
     modifier ownerDoesNotExist(address owner) {
-        require(!isOwner[owner], "MultisigWallet: address exists in owner addresses list");
+        require(!isOwner[owner]);
         _;
     }
 
     modifier ownerExists(address owner) {
-        require(isOwner[owner], "MultisigWallet:  address not exists in owner addresses list");
+        require(isOwner[owner]);
         _;
     }
 
     modifier transactionExists(uint transactionId) {
-        require(transactions[transactionId].destination != address(0), "MultisigWallet:  transaction is not exist");
+        require(transactions[transactionId].destination != address(0));
         _;
     }
 
     modifier confirmed(uint transactionId, address owner) {
-        require(confirmations[transactionId][owner], "MultisigWallet:  transaction is not confirmed");
+        require(confirmations[transactionId][owner]);
         _;
     }
 
     modifier notConfirmed(uint transactionId, address owner) {
-        require(!confirmations[transactionId][owner], "MultisigWallet:  transaction is confirmed");
+        require(!confirmations[transactionId][owner]);
         _;
     }
 
     modifier notExecuted(uint transactionId) {
-        require(!transactions[transactionId].executed, "MultisigWallet:  transaction is executed before");
+        require(!transactions[transactionId].executed);
         _;
     }
 
     modifier notNull(address _address) {
-        require(_address != address(0),  "MultisigWallet:  address is null");
+        require(_address != address(0));
         _;
     }
 
     modifier validRequirement(uint ownerCount, uint _required) {
-        require(
-            ownerCount <= MAX_OWNER_COUNT
+        require(ownerCount <= MAX_OWNER_COUNT
             && _required <= ownerCount
             && _required != 0
-            && ownerCount != 0
-            ,  "MultisigWallet: owner requirement is not valid");
+            && ownerCount != 0);
         _;
     }
 

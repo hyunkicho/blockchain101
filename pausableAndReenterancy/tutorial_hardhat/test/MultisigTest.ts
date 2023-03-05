@@ -19,7 +19,7 @@ function toBN(amount: number) {
   return ethers.BigNumber.from(amount.toString()).toString();
 }
 
-describe('Start Multisig test', async () => {
+describe('Start Example ERC721 Governor test', async () => {
   // contracts
   let exampleERC20: Contract;
   let multisig: Contract;
@@ -59,8 +59,11 @@ describe('Start Multisig test', async () => {
     });
 
     it('step 01) submitTransaction', async () => {
+      let currentBlockNumber = await ethers.provider.getBlockNumber();
+      console.log("proposal currentBlockNumber is : ", currentBlockNumber);
       const erc20Token = await ethers.getContractAt("MyERC20", exampleERC20.address);
       console.log("exampleERC20.address : " , exampleERC20.address);
+
       
       //set Proposal to send token
       let teamAddress = teamAddr.address;
