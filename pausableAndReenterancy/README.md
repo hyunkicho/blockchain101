@@ -154,5 +154,62 @@ contract Attack {
 
 테스트
 ```
-npx hardhat test
+npx hardhat test ./test/reEntrancyTest.ts
 ```
+
+```
+npx hardhat test ./test/reEntrancyTest2.ts
+```
+
+2개의 테스트 결과를 보면 
+
+
+etherStore balance : etherStore BigNumber { value: "0" }
+etherStore balance : etherStore BigNumber { value: "2000000000000000000" }
+
+가드를 넣은 것만 정상작동하는 것을 볼 수가 있습니다.
+
+이를 클레이튼 체인에 직접 해보겠습니다.
+
+트랜잭션 영수증
+https://baobab.scope.klaytn.com/tx/0x94691fa4f8e79199cce142ec98680dfe52a7be68770faf03790fbd1f41b8069c?tabId=internalTx
+
+3Klay가 입금된 Attack 컨트렉트
+https://baobab.scope.klaytn.com/account/0x19363fb72444525c2ddff3b016675f795ac656e5?tabId=txList
+
+
+실제로 하실 때는 먼저 프라이빗 키를 각각 가져와야 합니다.
+```
+    klaytn: {
+      url: process.env.RPC_URL_KLAYTN,
+      accounts: [process.env.PRIVATE_KEY!, process.env.TEST_PRIVATE_KEY!, process.env.TEST_PRIVATE_KEY2!]
+    }
+```
+결과
+```
+hyunkicho@Hyunkiui-MacBookPro tutorial_hardhat % npx hardhat run scripts/deposit.ts --network klaytn
+etherStore balance :  BigNumber { value: "2000000000000000000" }
+before sending1 eth :  BigNumber { value: "0" }
+before sending1 eth attack:  BigNumber { value: "0" }
+before sending1 eth eve :  BigNumber { value: "99999475000000000000" }
+etherStore balance etherStore:  BigNumber { value: "2000000000000000000" }
+after sending1 eth :  BigNumber { value: "0" }
+after sending1 eth : attack  BigNumber { value: "0" }
+after sending1 eth : eve  BigNumber { value: "99999475000000000000" }
+```
+
+attack 컨트렉트에 쌓이 이더리움을 한번 확인을 해보면 
+
+```
+hyunkicho@Hyunkiui-MacBookPro tutorial_hardhat % npx hardhat run scripts/getBalance.ts --network klaytn
+0x19363fb72444525c2ddff3b016675f795ac656e5
+0x3F8bE5375B82390d09E3fF60835eafb162bfeDcc
+getBalance from attack contract
+Balance of 0x3F8bE5375B82390d09E3fF60835eafb162bfeDcc is 3000000000000000000
+```
+
+3이더가 들어온 것을 확인할 수 있습니다.
+
+그러나 리엔터런시 가드인 경우에는
+
+

@@ -39,7 +39,6 @@ contract EtherStoreGuard is ReentrancyGuard{
     function withdraw() public nonReentrant {
         uint bal = balances[msg.sender];
         require(bal > 0);
-
         (bool sent, ) = msg.sender.call{value: bal}("");
         require(sent, "Failed to send Ether");
 
