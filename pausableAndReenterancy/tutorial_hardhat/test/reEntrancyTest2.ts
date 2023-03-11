@@ -34,8 +34,8 @@ let owner: SignerWithAddress;
       console.log("before sending1 eth eve : ", await ethers.provider.getBalance(eve.address))
       console.log("etherStore balance etherStore: ", await ethers.provider.getBalance(etherStore.address))
 
-      attack.connect(eve).attack({value: (1*(10**18)).toString()})
-
+      const res = attack.connect(eve).attack({value: (1*(10**18)).toString()})
+      console.log("res >>", res);
       console.log("after sending1 eth : ", await attack.getBalance());
       console.log("after sending1 eth : attack ", await ethers.provider.getBalance(attack.address))
       console.log("after sending1 eth : eve ", await ethers.provider.getBalance(eve.address))
