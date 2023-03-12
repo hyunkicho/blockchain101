@@ -30,7 +30,7 @@ describe("etherStore", function () {
     });
 
     it("Call Attack.attack sending 1 ether (using Account 3 (Eve))", async function () {
-      console.log("before sending1 eth : ", await attack.getBalance());
+      // console.log("before sending1 eth : ", await attack.getBalance());
       console.log("before sending1 eth attack: ", await ethers.provider.getBalance(attack.address))
       console.log("before sending1 eth eve : ", await ethers.provider.getBalance(eve.address))
       console.log("etherStore balance etherStore: ", await ethers.provider.getBalance(etherStore.address))
@@ -38,9 +38,9 @@ describe("etherStore", function () {
       attack.connect(eve).attack({value: (1*(10**18)).toString()})
 
       //채굴을 해야 이더리움의 제대로 된 업데이트 정보를 알아낼 수 있다.
-      await ethers.provider.send("evm_mine", []); //mine to start vote
+      await ethers.provider.send("evm_mine", []);
 
-      console.log("after sending1 eth : ", await attack.getBalance());
+      // console.log("after sending1 eth : ", await attack.getBalance());
       console.log("after sending1 eth : attack ", await ethers.provider.getBalance(attack.address))
       console.log("after sending1 eth : eve ", await ethers.provider.getBalance(eve.address))
       console.log("etherStore balance : etherStore", await ethers.provider.getBalance(etherStore.address))

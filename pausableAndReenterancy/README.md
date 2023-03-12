@@ -210,6 +210,41 @@ Balance of 0x3F8bE5375B82390d09E3fF60835eafb162bfeDcc is 3000000000000000000
 
 3이더가 들어온 것을 확인할 수 있습니다.
 
-그러나 리엔터런시 가드인 경우에는
+그러나 리엔터런시 가드인 경우에는 오류가 나는것을 볼 수 있습니다.
 
+```
+hyunkicho@192 tutorial_hardhat % npx hardhat run scripts/deposit_guard.ts --network klaytn
+etherStore address :  0x556083fb04F51c074076Ba77502F9EE6965f97d8
+attack address :  0x451d9e584C881EBdf218f3b5f88c2619F3cc77b7
+etherStore balance :  BigNumber { value: "2000000000000000000" }
+before sending1 eth :  BigNumber { value: "0" }
+before sending1 eth attack:  BigNumber { value: "0" }
+before sending1 eth eve :  BigNumber { value: "46994131850000000000" }
+etherStore balance etherStore:  BigNumber { value: "2000000000000000000" }
+/Users/hyunkicho/fastcampusgit/blockchain101/pausableAndReenterancy/tutorial_hardhat/node_modules/@ethersproject/logger/src.ts/index.ts:269
+        const error: any = new Error(message);
+                           ^
+Error: cannot estimate gas; transaction may fail or may require manual gas limit [ See: https://links.ethers.org/v5-errors-UNPREDICTABLE_GAS_LIMIT ] (reason="execution reverted: Failed to send Ether", method="estimateGas", transaction={"from":"0xD1c27AaDC8dcb7B5C9Ae7Ce1528d6CE599d69C3d","to":"0x451d9e584C881EBdf218f3b5f88c2619F3cc77b7","value":{"type":"BigNumber","hex":"0x0de0b6b3a7640000"},"data":"0x9e5faafc","accessList":null}, error={"name":"ProviderError","_stack":"ProviderError: HttpProviderError\n 
+```
 
+3. 컨트렉트 작성시 점검해야 할 기초 보안 사항
+
+    1. 멀티시그 지갑 적용 여부 확인
+       1. 멀티시그 지갑 적용시 몇개의 지갑을 사용할지 체크
+       2. 관리자 권한 관련 문서 작성 및 공유
+
+    2. 관리자 권한에 대한 구조 확인
+       1. Ownable을 사용할 건지 아니면 다른 Role도 나누어서 관리할건지
+       2. 별도의 Access구조가 필요한 컨트렉트인지
+       3. 사용되는 관리자 권한에 따라 문서 작성 및 공유
+
+    3. Pausable 적용 여부
+       1. Pausable을 넣을지에 대한 여부 확인
+
+    4. Re-entrancy
+        1. 재진입 공격에 대한 방지가 제대로 이루어졌는지 확인
+
+    5. 업그레이더블 적용 여부
+       1. 탈중앙성이 떨어지더라도 업그레이더블 컨트렉트로 해야 될지 확인 (추후 기획 변경 가능성에 따라)
+
+    6. 위의 사항들에 대해서 테스트코드를 작성해서 배포전에 제대로 작동하는지 체크해보기

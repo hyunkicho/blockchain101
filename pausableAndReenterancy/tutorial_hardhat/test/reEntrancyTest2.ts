@@ -34,11 +34,13 @@ let owner: SignerWithAddress;
       console.log("before sending1 eth eve : ", await ethers.provider.getBalance(eve.address))
       console.log("etherStore balance etherStore: ", await ethers.provider.getBalance(etherStore.address))
 
-      const res = attack.connect(eve).attack({value: (1*(10**18)).toString()})
+      const res = await attack.connect(eve).attack({value: (1*(10**18)).toString()})
       console.log("res >>", res);
-      console.log("after sending1 eth : ", await attack.getBalance());
-      console.log("after sending1 eth : attack ", await ethers.provider.getBalance(attack.address))
-      console.log("after sending1 eth : eve ", await ethers.provider.getBalance(eve.address))
+      // //채굴을 해야 이더리움의 제대로 된 업데이트 정보를 알아낼 수 있다.
+      // await ethers.provider.send("evm_mine", []);
+      // console.log("after sending1 eth : ", await attack.getBalance());
+      // console.log("after sending1 eth : attack ", await ethers.provider.getBalance(attack.address))
+      // console.log("after sending1 eth : eve ", await ethers.provider.getBalance(eve.address))
     });
   });
 });
