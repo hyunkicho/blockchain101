@@ -1,7 +1,7 @@
 // scripts/upgrade-box.js
 import { ethers, upgrades } from "hardhat";
 
-const proxyAddress = '0x0F20c143a98CdfB3a1487278Bcd310296c674498';
+const proxyAddress = '0x8d33046c43808974d76C2874c8BbA8eDc06EF495';
 async function upgrade() {
   const BoxV2 = await ethers.getContractFactory("BoxV2");
   console.log("Preparing upgrade...");

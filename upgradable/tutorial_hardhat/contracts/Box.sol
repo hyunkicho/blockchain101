@@ -1,5 +1,3 @@
-pragma solidity ^0.8.13;
-
 // contracts/Box.sol
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.13;

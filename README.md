@@ -107,6 +107,54 @@ openzepplin의 대표적인 Owner2Step, AccessRole를 사용하여 다양한 관
 6. upgradable
 오픈제플린의 업그레이더블 컨트렉트 예제를 통해서 직접 업그레이더블 컨트렉트를 활용해 봅니다.
 
+## 코드 독해 1 Uniswap V2
+
+공식 깃허브 : https://github.com/Uniswap
+
+Uniswap V2 정리 - 기본 컨셉과 참고링크
+https://it-timehacker.tistory.com/338
+
+UniswapV2 정리 - UniswapV2Pair & UniswapV2ERC20 컨트렉트
+https://it-timehacker.tistory.com/339
+
+UniswapV2 정리 2 - Uniswap V2 Factory
+https://it-timehacker.tistory.com/340
+
+UniswapV2 정리3 - periphery, Router 뜯어보기
+https://it-timehacker.tistory.com/341
+
+UniswapV2 정리4 : fee-on-transfer tokens 함수들
+https://it-timehacker.tistory.com/342
+
+## 코드 독해 2 Opensea WyvernExchange V2.2
+
+이더스캔 코드 : https://etherscan.io/address/0x7be8076f4ea4a4ad08075c2508e481d6c946d12b#code
+
+트위터 스레드
+https://twitter.com/stone_chain/status/1566946633807699968
+
+미디엄 글 1 - 오픈씨 거래소의 구조, 직접 뜯어보자
+ https://medium.com/curg/%EC%98%A4%ED%94%88%EC%94%A8-%EA%B1%B0%EB%9E%98%EC%86%8C%EC%9D%98-%EA%B5%AC%EC%A1%B0-%EC%A7%81%EC%A0%91-%EB%9C%AF%EC%96%B4%EB%B3%B4%EC%9E%90-253469a9224
+
+미디엄 글 2 - OpenSea 컨트렉트의 버전별 특징과 핵심로직 분석
+https://chohyunki.medium.com/%EC%98%A4%ED%94%88%EC%94%A8-%EC%BB%A8%ED%8A%B8%EB%A0%89%ED%8A%B8%EC%9D%98-%EB%B0%9C%EC%A0%84-%EA%B3%BC%EC%A0%95%EA%B3%BC-%EB%B2%84%EC%A0%84%EB%B3%84-%ED%95%B5%EC%8B%AC-%EB%A1%9C%EC%A7%81-%EB%B6%84%EC%84%9D-c1c2f592242
+
+유튜브 1 - 오픈씨의 소스코드가 1년간 3번이나 바뀌었다고? 바뀐 이유와 버전별 차이 분석 (EIP191 서명과 EIP721 서명)
+https://youtu.be/INvWh8vJkV8
+
+유튜브 2 - NFT 거래소 OpenSea의 핵심로직과 작동원리 10분만에 설명해 드립니다.
+https://youtu.be/yLRyPhnlvU0
+
+## 코드 독해 3 Compound V2
+컴파운드 분석 1 편) 전체 구조와 C Token
+https://it-timehacker.tistory.com/364
+
+컴파운드 분석 2 편) 컴파운드에서의 이자율 계산
+https://it-timehacker.tistory.com/368
+
+컴파운드 분석 3편 - CToken & Comptroller (transfer, 유동성체크, 이자율 체크, 청산)
+https://it-timehacker.tistory.com/369
+
 
 ## 체인의 정석 SNS
 트위터 (블로그 내용 요약) : @stone_chain

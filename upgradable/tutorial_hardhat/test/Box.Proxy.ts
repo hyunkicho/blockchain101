@@ -1,6 +1,8 @@
 import { expect } from 'chai';
 import { Contract } from 'ethers';
 import { ethers, upgrades } from 'hardhat';
+import { getImplementationAddress } from '@openzeppelin/upgrades-core';
+
   // contracts
   let box: Contract;
 
@@ -10,6 +12,8 @@ describe('Box (proxy)', function () {
     const Box = await ethers.getContractFactory("Box");
     box = await upgrades.deployProxy(Box, [42], {initializer: 'store'});
     console.log("box deployProxy",box.address);
+    const currentImplAddress = await upgrades.erc1967.getImplementationAddress(box.address);
+    console.log("currentImplAddress",currentImplAddress);
   });
  
   // Test case
