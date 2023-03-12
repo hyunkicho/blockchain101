@@ -102,7 +102,10 @@ openzepplin의 대표적인 Owner2Step, AccessRole를 사용하여 다양한 관
 
 5. Pausable and re-enterancy (컨트렉트 보안)
 실무에서 컨트렉트 보안성 향상을 하기 위해 자주 사용하는 옵션인 Pausable과 Re-entrancy에 대해 학습하고 이를 적용해 봅니다.
+실제 코드를 통해 직접 재진입 공격을 시도해보고 재진입 공격을 막을 때 잘막히나 체크해봅니다.
 
+6. upgradable
+오픈제플린의 업그레이더블 컨트렉트 예제를 통해서 직접 업그레이더블 컨트렉트를 활용해 봅니다.
 
 
 ## 체인의 정석 SNS
