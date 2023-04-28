@@ -113,3 +113,7 @@ npx hardhat test
    스냅샷 시점이 잘 안맞으면 투표는 되지만 카운트가 안되는 상황 발생
    이 경우 오픈 제플린에서 해당 함수를 내부적으로 0으로 호출하는 경우의 수도 유효하게 두었기 때문에 일부러 막지 않았다고 합니다.
    https://github.com/OpenZeppelin/openzeppelin-contracts/issues/4071
+
+8. 테스트 결과 tally 또한 같은 환경의 erc721 Vote와 Openzepplin Governor를 사용중이므로  [NEW]
+tally에서 dao페이지를 사용할 수 있습니다.
+https://www.tally.xyz/gov/test-erc721
