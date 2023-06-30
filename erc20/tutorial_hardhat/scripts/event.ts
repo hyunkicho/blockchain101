@@ -5,17 +5,17 @@ async function transferEvent() {
   const MyERC20 = await ethers.getContractFactory("MyERC20");
   const erc20 = await MyERC20.attach(contractAddress);
   const topic = [erc20.filters.Transfer().topics!].toString();
-  // console.log("topic >>", topic)
   // console.log("contractAddress.toString() >>", contractAddress.toString())
 
   const filter = {
     address: contractAddress.toString(),
-    fromBlock: 8432738,
-    topics: [topic]    
+    //fromBlock을 최근으로 조정해주어야 합니다. (노드 서비스에서 제공을 안해주는 경우가 많습니다.)
+    fromBlock: 9066823,
+    topics: [topic]
   };
   const logs = await ethers.provider.getLogs(filter);
   //특정 이벤트만 필터링 하기 위한 로그 값
-  // console.log("logs >>>", logs)
+  console.log("logs >>>", logs)
   let abi = require("../artifacts/contracts/MyERC20.sol/MyERC20.json").abi;
   let iface = new ethers.utils.Interface(abi);
   // //로그를 분석하기 위해서 abi를 가져옴

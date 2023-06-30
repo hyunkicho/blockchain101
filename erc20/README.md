@@ -116,6 +116,27 @@
 
 # hardhat
 
+.env 파일 예시
+
+```
+PUBLIC_KEY=''
+TEST_PUBLIC_KEY=''
+PRIVATE_KEY=''
+TEST_PRIVATE_KEY=''
+ERC20=''
+
+RPC_URL='https://ethereum-goerli-archive-korea.allthatnode.com'
+RPC_URL_MATIC='https://polygon-testnet-rpc.allthatnode.com:8545'
+RPC_URL_BSC='https://bsc-testnet-rpc.allthatnode.com'
+RPC_URL_KLAYTN='https://klaytn-baobab-rpc.allthatnode.com:8551'
+
+# 컨트렉트 배포나 조회에서 에러가 날 때에는 node rpc url 키워드로 검색하셔서 새로운 rpc url을 찾아보시거나 infura 같은 회원 가입후 가능한 서비스를 찾아보세요
+# could not detect network 같은 에러 발생 시
+# 이벤트에서 에러가 날 때에는 archive node rpc url 키워드로 검색하셔서 새로운 rpc url을 찾아보시거나 infura 같은 회원 가입후 가능한 서비스를 찾아보세요
+# https://ethereum-goerli-archive-korea.allthatnode.com
+# https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161
+```
+
 1. bignumber 테스트
 ```
 npx hardhat run scripts/bigNumber.ts
@@ -134,15 +155,55 @@ npx hardhat run scripts/deploy.ts --network goerli
 npx hardhat test  
 ```
 4. 함수실행
+
+로컬에서 테스트 시
 ```
 npx hardhat run scripts/getBalance.ts
 ```
-5. 이벤트 조회
+
+goerli에서 테스트 시
+```
+npx hardhat run scripts/getBalance.ts --network goerli
+```
+
+
+로컬에서 테스트 시
+```
+npx hardhat run scripts/mint.ts
+npx hardhat run scripts/transfer.ts
+```
+
+goerli에서 테스트 시
+
+```
+npx hardhat run scripts/mint.ts --network goerli
+npx hardhat run scripts/transfer.ts --network goerli
+```
+
+1. 이벤트 조회
+
+event.ts에서 fromBlock을 최신 블록으로 바꿔주기
+(무료로 제공하는 rpc url에서는 최신 블록데이터를 많이 들고 있지 않는 경우가 있어서 응답값이 없을 수도 있습니다)
+```
+  const filter = {
+    address: contractAddress.toString(),
+    //fromBlock을 최근으로 조정해주어야 합니다. (노드 서비스에서 제공을 안해주는 경우가 많습니다.)
+    fromBlock: 9066823,
+    topics: [topic]
+  };
+```
+
+로컬에서 테스트 시
 ```
 npx hardhat run scripts/event.ts
 ```
+goerli에서 테스트 시
+```
+npx hardhat run scripts/event.ts --network goerli
+```
 
-6. 다중체인 배포
+
+1. 다중체인 배포
 faucet 받기
 ```
 https://www.allthatnode.com/faucet/polygon.dsrv //폴리곤
