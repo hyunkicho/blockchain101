@@ -291,3 +291,8 @@ abstract contract EIP712 {
 
     오픈씨의 EIP712 서명
     https://medium.com/curg/%EC%98%A4%ED%94%88%EC%94%A8-%EC%BB%A8%ED%8A%B8%EB%A0%89%ED%8A%B8%EC%9D%98-%EB%B0%9C%EC%A0%84-%EA%B3%BC%EC%A0%95%EA%B3%BC-%EB%B2%84%EC%A0%84%EB%B3%84-%ED%95%B5%EC%8B%AC-%EB%A1%9C%EC%A7%81-%EB%B6%84%EC%84%9D-c1c2f592242
+
+    * 강의에서는 서명에서 빠진 내용이 있어 수정해 두었습니다. (수강생 분의 도움으로 오류를 발견할 수 있었습니다.)
+    다만 메타마스크의 경우 강의를 찍을때와는 다르게 현재 예제가 더 잘 나와있기 때문에 해당 링크를 참고하시기를 바랍니다.
+    https://docs.metamask.io/wallet/reference/eth_signtypeddata_v4/
+
