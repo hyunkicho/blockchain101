@@ -1,5 +1,8 @@
 # mermaid
 
+*mermaid 를 ''' ''' 사이에 넣어주게 되면 아래와 같이 리드미에서 바로 mermaid를 보여줄 수 있습니다.
+
+mermaid
 ```
 sequenceDiagram
     actor user
