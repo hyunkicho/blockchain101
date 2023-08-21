@@ -4,6 +4,7 @@ import "hardhat-gas-reporter";
 import "solidity-coverage";
 import "dotenv/config";
 import "@nomiclabs/hardhat-ethers";
+import "@nomicfoundation/hardhat-chai-matchers";
 
 const config: HardhatUserConfig = {
   networks: {

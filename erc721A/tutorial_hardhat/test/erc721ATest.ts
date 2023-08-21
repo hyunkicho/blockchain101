@@ -2,11 +2,8 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
 import { expect } from 'chai';
-import chai from 'chai';
-import { solidity } from 'ethereum-waffle';
 import { Contract } from 'ethers';
 import { ethers } from 'hardhat';
-chai.use(solidity);
 
 // chai.use(solidity);
 
@@ -37,7 +34,7 @@ describe('Start Example ERC721A test', async () => {
     });
   });
 
-  describe('Test Mint exampleERC721A', () => {
+  describe('Test Mint exampleERC721A',  () => {
     it('Should  Mint corrrectly for the Example ERC721A Contract', async () => {
       await exampleERC721A.connect(addr1).mint(2, {value: ethers.utils.parseEther((price*2).toString())})
 
@@ -49,7 +46,7 @@ describe('Start Example ERC721A test', async () => {
     });
   });
 
-  describe('Test Approval exampleERC721A', () => {
+  describe('Test Approval exampleERC721A',  () => {
     it('should get approved for the Example ERC721A Contract', async () => {
       expect(await exampleERC721A.connect(addr1).approve(addr2.address, '1'))
         .to.emit(exampleERC721A, 'Approval')
