@@ -55,7 +55,7 @@ describe('Start Example ERC721A test', async () => {
     });
   });
 
-  describe('Test TransferFrom ExampleERC721A', async () => {
+  describe('Test TransferFrom ExampleERC721A', () => {
     it('Example ERC721A Contract should have ERC721A token after TransferFrom', async () => {
       expect(await exampleERC721A.connect(addr2).transferFrom(addr1.address, owner.address, '1'))
         .to.emit(exampleERC721A, 'Transfer')
