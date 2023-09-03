@@ -188,15 +188,17 @@ https://baobab.scope.klaytn.com/account/0x19363fb72444525c2ddff3b016675f795ac656
 결과
 ```
 hyunkicho@Hyunkiui-MacBookPro tutorial_hardhat % npx hardhat run scripts/deposit.ts --network klaytn
+
+etherStoreAddress :  0x50121b46288a62C4c55399751FCc311Da55B4229
+attackAddress :  0xb8115C366655D0110EAf08601e9EFa6A171fFdCb
 etherStore balance :  BigNumber { value: "2000000000000000000" }
 before sending1 eth :  BigNumber { value: "0" }
 before sending1 eth attack:  BigNumber { value: "0" }
 before sending1 eth eve :  BigNumber { value: "99999475000000000000" }
 etherStore balance etherStore:  BigNumber { value: "2000000000000000000" }
-after sending1 eth :  BigNumber { value: "0" }
-after sending1 eth : attack  BigNumber { value: "0" }
-after sending1 eth : eve  BigNumber { value: "99999475000000000000" }
 ```
+
+getBalance.ts의 contractAddress 부분에 새로 배포한 attack 컨트렉트의 주소를 넣어주고
 
 attack 컨트렉트에 쌓이 이더리움을 한번 확인을 해보면 
 
