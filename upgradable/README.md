@@ -110,9 +110,12 @@ npx hardhat test
 
 4. 네트워크 실행
 
+클레이튼의 경우 오픈제플린의 공식예제대로 하면 작동이 안되므로 bsc로 진행하도록 하겠습니다.
+*클레이튼은 추후 업데이트 예정
+
 생성
 ```
-hyunkicho@Hyunkiui-MacBookPro tutorial_hardhat % npx hardhat run scripts/create-box.ts --network klaytn
+hyunkicho@Hyunkiui-MacBookPro tutorial_hardhat % npx hardhat run scripts/create-box.ts --network bsc
 Box deployed to: 0x0F20c143a98CdfB3a1487278Bcd310296c674498
 ```
 
@@ -120,13 +123,13 @@ Box deployed to: 0x0F20c143a98CdfB3a1487278Bcd310296c674498
 Impelmantion 컨트렉트는 바뀌지만 유저가 상호작용하는 주소는 같은 주소로 업그레이드가 완료되었다.
 
 ```
-hyunkicho@Hyunkiui-MacBookPro tutorial_hardhat % npx hardhat run scripts/upgrade-box.ts --network klaytn
+hyunkicho@Hyunkiui-MacBookPro tutorial_hardhat % npx hardhat run scripts/upgrade-box.ts --network bsc
 Preparing upgrade...
 BoxV2 Implemantaion will be : 0x4C18BB1a60fb0b9fF5747658cEC416CB91a9AE43
 upgraded to same address :  0x0F20c143a98CdfB3a1487278Bcd310296c674498
 ```
 
-5. Initialzer와 생성자
+1. Initialzer와 생성자
 
 출저 : https://forum.openzeppelin.com/t/korean-writing-upgradeable-contracts/2007
 
