@@ -9,7 +9,7 @@ async function mint(to: string, tokenId: number) {
 }
 
 // We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
+// and prop아erly handle errors.
 const tokenId = 1;
 mint(process.env.PUBLIC_KEY!, tokenId).catch((error) => {
   console.error(error);
