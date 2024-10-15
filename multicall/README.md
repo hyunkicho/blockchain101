@@ -1,11 +1,12 @@
 # makerdao multi call
 source : https://github.com/makerdao/multicall/blob/master/src/Multicall2.sol
+soruce (new) : https://github.com/mds1/multicall/tree/main/src
 
 1. multicall
 
 defi의 경우 다양한 call을 한번의 화면에서 불러와야 한다. 이런 경우 시간이 오래걸리기 때문에 여러번의 call을 한번에 해주는 multicall이 나오게 되었다.
 해당 로직은 defi 뿐 만 아니라 다양한 Dapp에서 활용이 될 수 있으며 페이지 로딩 시간을 최소화 시켜 줄 수 있어 중요하다.
-
+(조회 외에도 트랜잭션 실행에서 가스비 절감을 위해 함수 실행에 사용될 수도 있다.)
 컨트렉트에 조회 함수를 실행하기 위해서는 target (조회할 컨트렉트 주소)와 callData (call에 대한 실질적인 내용) 2가지가 있으면 조회가 가능하다.
 해당 정보를 모두 담고 있는 Call을 다음과 같이 구조체로 만들면 컨트렉트에서 직접 call을 실행시킬 수 있다.
 ```
