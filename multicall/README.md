@@ -79,11 +79,10 @@ success와 return data를 returnData[i] = Result(success, ret) 를 통해서 배
     }
 ```
 
-* 조회 함수인데 view가 없는 이유??
-multicall의 경우 조회임에도 view로 안되어 있어서 실제 실행이 아닌 상태변화 없이 결과 값만 얻는 함수인 staticCall로 호출해야지만 사용이 가능하다.
-view로 리턴 받으면 더 편하긴 하는데 굳이 staticCall을 쓰는 이유는 external로 되어 있는데 내부적으로 multicall을 쓰는 케이스와 같이 staticCall로만 가능하거나 하는 예외 상황이 있긴 하기 때문에 범용적으로 사용한거 같다. 만약 이와 같은 상황이 아니라면 내부적으로 사용할 때 일반 view가 편하면 view로 바꿔도 된다.
+* multicall의 함수에 view가 없는 이유??
+multicall의 경우 조회임에도 view로 안되어 있어서 실제 실행이 아닌 상태변화 없이 결과 값만 얻는 함수인 staticCall로 호출해야지만 사용이 가능하다. staticCall은 컨트렉트 내부, 외부에서 모두 호출이 가능하기 때문에 view 함수가 아니더라도 조회가 가능하다. 또한 멀티콜은 조회 뿐만 아니라 트랜잭션 실행해도 사용될 수 있기 때문이다. multicall은 조회 외에도 트랜잭션을 묶어서 실행시킬 수 있으며, 이에 따라 가스비의 절감 효과도 가질 수 있다. 
 
-3. 테스트 및 배포
+1. 테스트 및 배포
 ```
 //Multicall test
 npx hardhat run scripts/deployMulticall.ts

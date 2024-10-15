@@ -40,6 +40,7 @@ describe('Start Example AccessControl test', async () => {
   describe('Test set more rule', () => {
     it('Should  set more rule corrrectly for the Example Ownable Contract', async () => {
     const NEW_ROLE = ethers.utils.id("NEW_ROLE");
+    console.log("NEW_ROLE : ", NEW_ROLE);
     await accessControl.grantRole(NEW_ROLE, newRole.address);
     expect(await accessControl.hasRole(NEW_ROLE, newRole.address)).to.be.true
     })
