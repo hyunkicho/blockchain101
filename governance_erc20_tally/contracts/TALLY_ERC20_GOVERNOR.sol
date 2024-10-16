@@ -12,7 +12,7 @@ import "@openzeppelin/contracts/governance/extensions/GovernorTimelockControl.so
 contract TALLY_ERC20_GOVERNOR is Governor, GovernorSettings, GovernorCountingSimple, GovernorVotes, GovernorVotesQuorumFraction, GovernorTimelockControl {
     constructor(IVotes _token, TimelockController _timelock)
         Governor("TALLY_ERC20_GOVERNOR")
-        GovernorSettings(600 /* 10 minute */, 600 /* 10 minute */, 1e18)
+        GovernorSettings(600 /* 10 minute */, 600 /* 10 minute */, 0)
         GovernorVotes(_token)
         GovernorVotesQuorumFraction(20)
         GovernorTimelockControl(_timelock)
