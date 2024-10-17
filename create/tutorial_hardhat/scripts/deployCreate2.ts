@@ -57,17 +57,17 @@ async function main() {
   console.log("Owner in FactoryAssembly deployed contract:", ownerInAssemblyContract);
   console.log("Foo value in FactoryAssembly deployed contract:", fooInAssemblyContract.toString());
 
-  // 4. Deploy contract with balance using Factory and check balance
-  const balanceSalt = ethers.utils.keccak256(ethers.utils.toUtf8Bytes("balance_salt"));
-  const deployWithBalanceTx = await factory.deploy(deployer.address, fooValue, balanceSalt);
-  const balanceTxReceipt = await deployWithBalanceTx.wait();
-  const deployedBalanceAddress = balanceTxReceipt.events[0].args.addr;
+  // // 4. Deploy contract with balance using Factory and check balance
+  // const balanceSalt = ethers.utils.keccak256(ethers.utils.toUtf8Bytes("balance_salt"));
+  // const deployWithBalanceTx = await factory.deploy(deployer.address, fooValue, balanceSalt);
+  // const balanceTxReceipt = await deployWithBalanceTx.wait();
+  // const deployedBalanceAddress = balanceTxReceipt.events[0].args.addr;
 
-  const deployedBalanceContract = await ethers.getContractAt("TestContract", deployedBalanceAddress);
-  const balance = await deployedBalanceContract.getBalance();
+  // const deployedBalanceContract = await ethers.getContractAt("TestContract", deployedBalanceAddress);
+  // const balance = await deployedBalanceContract.getBalance();
 
-  console.log("TestContract deployed with balance to:", deployedBalanceAddress);
-  console.log("Contract balance (in ether):", ethers.utils.formatEther(balance));
+  // console.log("TestContract deployed with balance to:", deployedBalanceAddress);
+  // console.log("Contract balance (in ether):", ethers.utils.formatEther(balance));
 }
 
 main()
