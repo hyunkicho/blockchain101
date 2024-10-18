@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetaMask + EJS + ethers.js</title>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
+</head>
+<body>
+    <h1>MetaMask + EJS + ethers.js</h1>
+
+    <div>
+        <button onclick="connectWallet()">Connect MetaMask Wallet</button>
+        <p id="walletAddress">Wallet Address: Not connected</p>
+    </div>
+
+    <div>
+        <label for="storeNum">Number to Store:</label>
+        <input type="number" id="storeNum" disabled>
+        <button onclick="storeNumber()" disabled>Store Number</button>
+    </div>
+
+    <div>
+        <button onclick="retrieveNumber()" disabled>Retrieve Number</button>
+        <p id="retrievedNumber">Stored Number: </p>
+    </div>
+
+    <div>
+        <h2>Events:</h2>
+        <ul id="eventsList"></ul>
+    </div>
+
+    <script>
+        const contractAddress = '0x101fc32308A737c325231680f5A57491D397D177'; //여기를 수정
+        const contractABI = [
+            {
+                "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": true,
+                        "internalType": "uint256",
+                        "name": "oldNumber",
+                        "type": "uint256"
+                    },
+                    {
+                        "indexed": true,
+                        "internalType": "uint256",
+                        "name": "newNumber",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "NumberSet",
+                "type": "event"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "num",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "store",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "retrieve",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            }
+        ];
+
+        let provider;
+        let signer;
+        let contract;
+
+        async function connectWallet() {
+            if (typeof window.ethereum !== 'undefined') {
+                try {
+                    await ethereum.request({ method: 'eth_requestAccounts' });
+                    provider = new ethers.providers.Web3Provider(window.ethereum);
+                    signer = provider.getSigner();
+                    contract = new ethers.Contract(contractAddress, contractABI, signer);
+                    const address = await signer.getAddress();
+                    document.getElementById('walletAddress').innerText = 'Wallet Address: ' + address;
+                    
+                    // Enable the input and buttons after wallet is connected
+                    document.getElementById('storeNum').disabled = false;
+                    document.querySelector('button[onclick="storeNumber()"]').disabled = false;
+                    document.querySelector('button[onclick="retrieveNumber()"]').disabled = false;
+
+                    // Listen for the NumberSet event
+                    listenForEvents();
+
+                    console.log('MetaMask connected:', address);
+                } catch (error) {
+                    console.error('User rejected the request.');
+                }
+            } else {
+                console.error('MetaMask is not installed!');
+                alert('Please install MetaMask!');
+            }
+        }
+
+        async function storeNumber() {
+            const num = document.getElementById('storeNum').value;
+            try {
+                const tx = await contract.store(num);
+                await tx.wait();
+                console.log('Number stored successfully!', tx);
+            } catch (err) {
+                console.error('Error storing number:', err);
+            }
+        }
+
+        async function retrieveNumber() {
+            try {
+                const result = await contract.retrieve();
+                document.getElementById('retrievedNumber').innerText = 'Stored Number: ' + result.toString();
+            } catch (err) {
+                console.error('Error retrieving number:', err);
+            }
+        }
+
+        function listenForEvents() {
+            contract.on('NumberSet', (oldNumber, newNumber) => {
+                const eventElement = document.createElement('li');
+                eventElement.innerText = `NumberSet Event: Old Number: ${oldNumber.toString()}, New Number: ${newNumber.toString()}`;
+                document.getElementById('eventsList').appendChild(eventElement);
+            });
+        }
+
+        window.onload = () => {
+            console.log("Script loaded and ready");
+        };
+    </script>
+</body>
+</html>
